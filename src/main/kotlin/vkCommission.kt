@@ -4,12 +4,10 @@ const val COMMISSION = 0.0075
 fun main() {
     while (true) {
         print("Input amount: ")
-        val amount = readln()?.toDouble()
+        val amount = readln().toDouble()
         val resultCommission = amount * COMMISSION
         val result = if (resultCommission <= ZERO)
             ZERO
-        else if (amount <= MIN_COMMISSION)
-            amount
         else if (resultCommission <= MIN_COMMISSION)
             MIN_COMMISSION
         else resultCommission
