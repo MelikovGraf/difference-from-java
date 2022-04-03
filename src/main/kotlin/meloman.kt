@@ -12,9 +12,9 @@ fun main() {
         print("Введите цифру 1, если вы в первый раз: ")
         val user = readln().toInt()
         if (user == 1)
-            println("Сумма к оплате с учетом скидки: ${pay(amount)} рублей ${payCent(amount)} копеек")
+            println("Сумма к оплате с учетом скидки: ${(pay(amount)).toInt()} рублей ${(payCent(amount)).toInt()} копеек")
         else
-            println("Сумма к оплате с учетом скидки: ${pay(amount)*THIRD_COUPON} рублей ${payCent(amount)*THIRD_COUPON} копеек")
+            println("Сумма к оплате с учетом скидки: ${(pay(amount)*THIRD_COUPON).toInt()} рублей ${(payCent(amount)*THIRD_COUPON).toInt()} копеек")
 
     }
 }
@@ -28,5 +28,5 @@ fun pay(amount: Double): Double {
 }
 
 fun payCent(amount: Double): Int {
-    return ((amount - amount.toInt())*100).toInt()
+    return ((pay(amount) - pay(amount).toInt())*100).toInt()
 }
