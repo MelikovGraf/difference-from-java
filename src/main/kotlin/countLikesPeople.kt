@@ -1,7 +1,15 @@
 fun main() {
     while (true) {
         print("Введите число лайков: ")
-        val count = readln().toUInt(); if (count != 11u && count != 111u && count != 1111u && count % 10u == 1u) println("Нравится $count человеку")
-        else println("Нравится $count людям")
+        val count = readln().toInt()
+        val string = if (
+            count != 11
+            && count % 10 == 1
+            && count % 100 != 11
+            && count % 1000 != 11
+            && count % 10000 != 11
+        ) "Нравится $count человеку"
+        else "Нравится $count людям"
+            println(string)
     }
 }
