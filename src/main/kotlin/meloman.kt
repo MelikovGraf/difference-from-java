@@ -8,25 +8,29 @@ fun main() {
 
     while (true) {
         print("Введите сумму покупки: ")
-        var amount = readln().toDouble()
+        var amountRub = readln().toDouble()
         print("Введите цифру 1, если вы в первый раз: ")
         val user = readln().toInt()
-        if (user == 1)
-            println("Сумма к оплате с учетом скидки: ${(pay(amount)).toInt()} рублей ${(payCent(amount)).toInt()} копеек")
-        else
-            println("Сумма к оплате с учетом скидки: ${(pay(amount)*THIRD_COUPON).toInt()} рублей ${(payCent(amount)*THIRD_COUPON).toInt()} копеек")
-
+        val amountWithDiscountRub: Double = pay(amountRub, user)
+        val amountWithDiscountCent: Int = (amountWithDiscountRub * 100).toInt()
+        val rubles = amountWithDiscountRub.toInt()
+        val cents = amountWithDiscountCent % 100
+        println("Сумма к оплате с учетом скидки: $rubles рублей $cents копеек")
     }
 }
 
-fun pay(amount: Double): Double {
-    return if (amount > TEN_THOUSAND)
-        (amount * SECOND_COUPON)
-    else if (amount > THOUSAND)
-        (amount - FIRST_COUPON)
-    else amount
-}
-
-fun payCent(amount: Double): Int {
-    return ((pay(amount) - pay(amount).toInt())*100).toInt()
+fun pay(amount: Double, user: Int): Double {
+    if (user == 1) {
+        return if (amount > TEN_THOUSAND)
+            (amount * SECOND_COUPON)
+        else if (amount > THOUSAND)
+            (amount - FIRST_COUPON)
+        else amount }
+    else {
+        return if (amount > TEN_THOUSAND)
+            (amount * SECOND_COUPON)*THIRD_COUPON
+        else if (amount > THOUSAND)
+            (amount - FIRST_COUPON)*THIRD_COUPON
+        else amount*THIRD_COUPON
+    }
 }
