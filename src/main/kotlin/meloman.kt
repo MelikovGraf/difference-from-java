@@ -20,17 +20,11 @@ fun main() {
 }
 
 fun pay(amount: Double, user: Int): Double {
-    if (user == 1) {
-        return if (amount > TEN_THOUSAND)
+    val commission = if (amount > TEN_THOUSAND)
             (amount * SECOND_COUPON)
         else if (amount > THOUSAND)
             (amount - FIRST_COUPON)
-        else amount }
-    else {
-        return if (amount > TEN_THOUSAND)
-            (amount * SECOND_COUPON)*THIRD_COUPON
-        else if (amount > THOUSAND)
-            (amount - FIRST_COUPON)*THIRD_COUPON
-        else amount*THIRD_COUPON
+        else amount
+    return if (user == 1) commission
+    else commission*THIRD_COUPON
     }
-}
